@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.studentworkappfx.HelloController">
+<VBox alignment="CENTER" prefWidth="285.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.studentworkappfx.HelloController">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <Label fx:id="welcomeText" />
+    <Button fx:id="GradeBtn" onAction="#onGradeClick" text="Canvas" />
+   <Button fx:id="WorkOrder" mnemonicParsing="false" onAction="#onOrderClick" text="Work Order" />
+   <Button fx:id="DegreeBtn" mnemonicParsing="false" onAction="#onDegreeClick" text="Degree" />
+   <Button fx:id="Tuition" mnemonicParsing="false" onAction="#onTuitionClick" text="Tuition Options" />
+   <Button fx:id="Student" mnemonicParsing="false" onAction="#onStudentClick" text="Student Portal" />
 </VBox>
