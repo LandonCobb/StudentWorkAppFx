@@ -11,14 +11,10 @@ public class HelloController {
     @FXML
     private Label welcomeText;
 
-    final static String[] urls = new String[]{
-            "https://lms.neumont.edu"
-    };
-
     @FXML
     protected void onGradeClick() {
         welcomeText.setText("Link to Canvas");
-        // code below is from Stack overflow https://stackoverflow.com/questions/10967451/open-a-link-in-browser-with-java-button
+        // code below was made possible with the help of Stack overflow https://stackoverflow.com/questions/10967451/open-a-link-in-browser-with-java-button
         try {
             String url = "https://lms.neumont.edu"; // the url
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
