@@ -12,7 +12,9 @@ public class NoteController {
     @FXML
     private TextArea text;
 
+    @FXML
     protected void save(){
-
+        System.out.println(text.getText());
     }
+
 }

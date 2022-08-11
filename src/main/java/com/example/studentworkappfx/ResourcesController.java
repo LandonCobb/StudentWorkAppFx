@@ -1,13 +1,10 @@
 package com.example.studentworkappfx;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-import java.net.URL;
 
-
-public class HelloController {
+public class ResourcesController {
     @FXML
     private Label welcomeText;
 
