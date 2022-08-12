@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="224.0" prefWidth="302.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.studentworkappfx.Calc">
+   <children>
+      <TextField fx:id="Entry" layoutX="2.0" layoutY="1.0" prefHeight="25.0" prefWidth="302.0" />
+      <Button fx:id="add" layoutX="125.0" layoutY="39.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="+" />
+      <Button fx:id="subtract" layoutX="125.0" layoutY="74.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="-" />
+      <Button fx:id="multiply" layoutX="125.0" layoutY="109.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="*" />
+      <Button fx:id="divide" layoutX="125.0" layoutY="142.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="/" />
+      <Button fx:id="c" layoutX="14.0" layoutY="39.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="C" />
+      <Button fx:id="ex" layoutX="47.0" layoutY="39.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="37.0" text="e^x" />
+      <Button fx:id="sqrt" layoutX="89.0" layoutY="39.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="√" />
+      <Button fx:id="log" layoutX="193.0" layoutY="39.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" text="log" />
+      <Button fx:id="sin" layoutX="247.0" layoutY="39.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" text="Sin" />
+      <Button fx:id="ln" layoutX="193.0" layoutY="74.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" text="ln" />
+      <Button fx:id="cos" layoutX="247.0" layoutY="74.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" text="Cos" />
+      <Button layoutX="193.0" layoutY="109.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" text="x^y" fx:id="xy" />
+      <Button fx:id="tan" layoutX="247.0" layoutY="109.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" text="Tan" />
+      <Button layoutX="193.0" layoutY="142.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" text="x^2" fx:id="x2" />
+      <Button fx:id="mod" layoutX="247.0" layoutY="142.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" text="Mod" />
+      <Button layoutX="193.0" layoutY="177.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" text="x^3" fx:id="x3" />
+      <Button layoutX="247.0" layoutY="177.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" text="x!" fx:id="x1" />
+      <Button fx:id="num7" layoutX="14.0" layoutY="74.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="7" />
+      <Button fx:id="equals" layoutX="125.0" layoutY="177.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="=" />
+      <Button fx:id="point" layoutX="89.0" layoutY="177.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="." />
+      <Button fx:id="num0" layoutX="14.0" layoutY="177.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" text="0" />
+      <Button fx:id="num3" layoutX="89.0" layoutY="142.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="3" />
+      <Button fx:id="num2" layoutX="52.0" layoutY="142.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="2" />
+      <Button fx:id="num1" layoutX="14.0" layoutY="142.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="1" />
+      <Button fx:id="num6" layoutX="89.0" layoutY="109.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="6" />
+      <Button fx:id="num5" layoutX="52.0" layoutY="109.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="5" />
+      <Button fx:id="num4" layoutX="14.0" layoutY="109.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="4" />
+      <Button fx:id="num9" layoutX="89.0" layoutY="74.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="9" />
+      <Button fx:id="num8" layoutX="52.0" layoutY="74.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="8" />
+   </children>
+</AnchorPane>
