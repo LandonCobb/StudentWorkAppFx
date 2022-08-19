@@ -18,18 +18,15 @@ public class NoteController {
 
     @FXML
     private Label Slabel;
-
-    private static String dd = "";
     @FXML
     protected void save() throws IOException {
         System.out.println(text.getText());
-        dd = d.getText();
         writeToFile(text.getText());
         Slabel.setText("Saved");
     }
 
-    public static void writeToFile(String existingLine) throws IOException {
-        PrintStream out = new PrintStream(new FileOutputStream( "target/Notes/" + dd + ".txt", false));
+    public void writeToFile(String existingLine) throws IOException {
+        PrintStream out = new PrintStream(new FileOutputStream( "target/Notes/" + d.getText() + ".txt", false));
         try {
             out.println(existingLine);
         } finally {
@@ -40,13 +37,12 @@ public class NoteController {
     @FXML
     protected void load() throws IOException {
         System.out.println(text.getText());
-        dd = d.getText();
         readFile();
         Slabel.setText("Loaded");
     }
 
     public void readFile() throws IOException {
-        InputStream fileIn = new FileInputStream("target/Notes/" + dd + ".txt");
+        InputStream fileIn = new FileInputStream("target/Notes/" + d.getText() + ".txt");
         BufferedReader in = new BufferedReader(new InputStreamReader(fileIn));
         String line = "";
         try{
