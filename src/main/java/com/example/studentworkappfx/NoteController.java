@@ -28,7 +28,6 @@ public class NoteController {
         try {
             out.println(existingLine);
         } finally {
-            //fileOut.flush();
             out.close();
         }
     }
