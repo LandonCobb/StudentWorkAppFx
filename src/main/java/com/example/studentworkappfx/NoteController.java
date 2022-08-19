@@ -24,7 +24,7 @@ public class NoteController {
     }
 
     public static void writeToFile(String existingLine) throws IOException {
-        PrintStream out = new PrintStream(new FileOutputStream( dd + ".txt", false));
+        PrintStream out = new PrintStream(new FileOutputStream( "target/Notes/" + dd + ".txt", false));
         try {
             out.println(existingLine);
         } finally {
@@ -40,7 +40,7 @@ public class NoteController {
     }
 
     public void readFile() throws IOException {
-        InputStream fileIn = new FileInputStream(dd + ".txt");
+        InputStream fileIn = new FileInputStream("target/Notes/" + dd + ".txt");
         BufferedReader in = new BufferedReader(new InputStreamReader(fileIn));
         String line = "";
         try{
