@@ -149,7 +149,7 @@
                   </Text>
                </children>
             </Pane>
-            <ListView prefHeight="200.0" prefWidth="200.0" />
+            <ListView prefHeight="535.0" prefWidth="210.0" />
          </children>
       </VBox>
       <VBox prefHeight="560.0" prefWidth="200.0" AnchorPane.leftAnchor="680.0" AnchorPane.topAnchor="20.0">
