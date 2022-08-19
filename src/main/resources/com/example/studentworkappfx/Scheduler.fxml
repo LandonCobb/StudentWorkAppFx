@@ -158,7 +158,7 @@
                   </Text>
                </children>
             </Pane>
-            <HBox prefHeight="65.0" prefWidth="200.0">
+            <HBox fx:id="demoTodoBox" prefHeight="65.0" prefWidth="200.0">
                <children>
                   <CheckBox mnemonicParsing="false" translateX="7.0" translateY="25.0" />
                   <TextArea maxHeight="50.0" maxWidth="160.0" prefHeight="0.0" prefWidth="183.0" translateX="17.0" translateY="8.0" />
