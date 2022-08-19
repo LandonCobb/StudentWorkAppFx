@@ -1,6 +1,7 @@
 package com.example.studentworkappfx;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -15,12 +16,16 @@ public class NoteController {
     @FXML
     private TextField d;
 
+    @FXML
+    private Label Slabel;
+
     private static String dd = "";
     @FXML
     protected void save() throws IOException {
         System.out.println(text.getText());
         dd = d.getText();
         writeToFile(text.getText());
+        Slabel.setText("Saved");
     }
 
     public static void writeToFile(String existingLine) throws IOException {
@@ -37,6 +42,7 @@ public class NoteController {
         System.out.println(text.getText());
         dd = d.getText();
         readFile();
+        Slabel.setText("Loaded");
     }
 
     public void readFile() throws IOException {
