@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 public class ResourcesController {
     @FXML
     private Label welcomeText;
-
     @FXML
     protected void onGradeClick() {
         welcomeText.setText("Link to Canvas");
