@@ -24,7 +24,7 @@
                   <Font name="Arial Bold" size="96.0" />
                </font>
             </Text>
-            <Text fx:id="dPaneWeekday" layoutX="5.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wednesday" textAlignment="CENTER">
+            <Text fx:id="dPaneWeekday" layoutX="-6.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wednesday" textAlignment="CENTER" wrappingWidth="182.2603759765625">
                <font>
                   <Font name="Franklin Gothic Medium" size="32.0" />
                </font>
@@ -33,11 +33,11 @@
       </Pane>
       <VBox layoutX="20.0" layoutY="196.0" prefHeight="317.0" prefWidth="170.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="196.0">
          <children>
-            <VBox prefHeight="172.0" prefWidth="170.0">
+            <VBox prefHeight="220.0" prefWidth="170.0">
                <children>
                   <Pane prefHeight="20.0" prefWidth="170.0" style="-fx-background-color: black;">
                      <children>
-                        <Text fx:id="txtChangeDate" fill="WHITE" layoutX="36.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-background-color: black;" text="VIEW SCHEDULE" textAlignment="RIGHT">
+                        <Text fill="WHITE" layoutX="36.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-background-color: black;" text="VIEW SCHEDULE" textAlignment="RIGHT">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="13.0" />
                            </font>
@@ -83,13 +83,18 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
+                  <Button fx:id="btnSelectDate" minWidth="135.0" mnemonicParsing="false" text="SELECT DATE" textAlignment="RIGHT" textOverrun="CENTER_ELLIPSIS">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Pane prefHeight="20.0" prefWidth="170.0" style="-fx-background-color: black;">
                      <children>
-                        <Text fx:id="txtChangeDate1" fill="WHITE" layoutX="36.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-background-color: black;" text="EDIT SCHEDULE" textAlignment="RIGHT">
+                        <Text fill="WHITE" layoutX="36.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-background-color: black;" text="EDIT SCHEDULE" textAlignment="RIGHT">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="13.0" />
                            </font></Text>
@@ -118,7 +123,7 @@
          <children>
             <Pane prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: black;">
                <children>
-                  <Text fx:id="txtChangeDate3" fill="WHITE" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-background-color: black;" text="&lt;&lt;CURRENT DATE&gt;&gt;" textAlignment="CENTER" wrappingWidth="200.0">
+                  <Text fx:id="txtChangeDate" fill="WHITE" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-background-color: black;" text="&lt;&lt;CURRENT DATE&gt;&gt;" textAlignment="CENTER" wrappingWidth="200.0">
                      <font>
                         <Font name="Arial Bold" size="13.0" />
                      </font>
@@ -137,7 +142,7 @@
          <children>
             <Pane prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: black;">
                <children>
-                  <Text fx:id="txtChangeDate32" fill="WHITE" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-background-color: black;" text="WEEK AT A GLANCE" textAlignment="CENTER" wrappingWidth="200.0">
+                  <Text fill="WHITE" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-background-color: black;" text="WEEK AT A GLANCE" textAlignment="CENTER" wrappingWidth="200.0">
                      <font>
                         <Font name="Arial Bold" size="13.0" />
                      </font>
@@ -147,11 +152,11 @@
             <ListView prefHeight="200.0" prefWidth="200.0" />
          </children>
       </VBox>
-      <VBox prefHeight="560.0" prefWidth="200.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <VBox prefHeight="560.0" prefWidth="200.0" AnchorPane.leftAnchor="680.0" AnchorPane.topAnchor="20.0">
          <children>
             <Pane prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: black;">
                <children>
-                  <Text fx:id="txtChangeDate31" fill="WHITE" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-background-color: black;" text="TO-DO LIST" textAlignment="CENTER" wrappingWidth="200.0">
+                  <Text fill="WHITE" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-background-color: black;" text="TO-DO LIST" textAlignment="CENTER" wrappingWidth="200.0">
                      <font>
                         <Font name="Arial Bold" size="13.0" />
                      </font>
