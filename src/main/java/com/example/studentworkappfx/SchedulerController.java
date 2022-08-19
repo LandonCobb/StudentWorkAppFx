@@ -65,7 +65,6 @@ public class SchedulerController implements Initializable {
 
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
