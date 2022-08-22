@@ -16,8 +16,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Clock implements Initializable {
+
     private int clickedCount = 0;
     private int swCount = 0;
+
+    @FXML
+    public Button backBTN;
     @FXML
     private Text clockText;
 
@@ -27,6 +31,10 @@ public class Clock implements Initializable {
     @FXML
     private Text swFinishText;
 
+    @FXML
+    public void onBackClicked(MouseEvent mouseEvent) {
+
+    }
     @FXML
     public void onSWClick(MouseEvent mouseEvent) {
         clickedCount++;
