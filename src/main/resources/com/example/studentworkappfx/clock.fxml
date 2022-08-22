@@ -8,16 +8,17 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.studentworkappfx.Clock">
    <children>
-      <Text fx:id="clockText" layoutX="187.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="246.53809545603792">
+      <Text fx:id="clockText" layoutX="51.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="515.2047519501785">
          <font>
             <Font name="Arial" size="96.0" />
          </font>
       </Text>
-      <Button fx:id="swButton" layoutX="274.0" layoutY="279.0" mnemonicParsing="false" style="-fx-background-color: green;" text="Stopwatch" />
-      <Text fx:id="swFinishText" layoutX="309.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0">
+      <Button fx:id="swButton" layoutX="264.0" layoutY="269.0" mnemonicParsing="false" onMouseClicked="#onSWClick" style="-fx-background-color: green;" text="Stopwatch" />
+      <Text fx:id="swFinishText" layoutX="150.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="299.99998474121094">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
+      <Button fx:id="backBTN" layoutX="25.0" layoutY="47.0" mnemonicParsing="false" onMouseClicked="#onBackClicked" text="Back" />
    </children>
 </AnchorPane>
