@@ -10,10 +10,14 @@
    <children>
       <Text fx:id="clockText" layoutX="192.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="515.2047519501785">
          <font>
-            <Font name="Arial" size="96.0" />
+            <Font name="Comic Sans MS" size="96.0" />
          </font>
       </Text>
-      <Button fx:id="swButton" layoutX="414.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#onSWClick" style="-fx-background-color: green;" text="Stopwatch" />
+      <Button fx:id="swButton" layoutX="381.0" layoutY="346.0" mnemonicParsing="false" onMouseClicked="#onSWClick" style="-fx-background-color: green;" text="Stopwatch">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Button>
       <Text fx:id="swFinishText" layoutX="300.0" layoutY="465.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="299.99998474121094">
          <font>
             <Font size="24.0" />
