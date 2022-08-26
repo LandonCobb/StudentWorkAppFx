@@ -10,7 +10,6 @@ import java.io.IOException;
 public class ResourcesController {
     @FXML
     private Label welcomeText;
-
     @FXML
     protected void onGradeClick() {
         welcomeText.setText("Link to Canvas");
