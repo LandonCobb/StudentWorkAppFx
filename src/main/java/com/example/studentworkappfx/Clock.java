@@ -6,6 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import java.net.URL;
@@ -32,8 +34,8 @@ public class Clock implements Initializable {
     private Text swFinishText;
 
     @FXML
-    public void onBackClicked(MouseEvent mouseEvent) {
-
+    public void onBackClicked(MouseEvent mouseEvent) throws IOException {
+        ChangeScene.changeScene(mouseEvent, "Scheduler.fxml");
     }
     @FXML
     public void onSWClick(MouseEvent mouseEvent) {
