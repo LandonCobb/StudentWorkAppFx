@@ -223,9 +223,12 @@ public class Calc {
 
     }
     @FXML
-    public void clickdot(ActionEvent actionEvent) {
-
-
+    public void clickdot() {
+        if(!result.getText().contains("+")&&!result.getText().contains("-")&&!result.getText().contains("*")&&!result.getText().contains("/")&&!result.getText().contains("%")) {
+            String adding = result.getText() + "/";
+            result.setText(adding);
+            operator = "/";
+        }
     }
     @FXML
     public void click7(ActionEvent actionEvent) {
