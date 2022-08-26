@@ -12,6 +12,6 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="279.0" layoutY="251.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onStart" text="Start" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="279.0" AnchorPane.rightAnchor="279.0" AnchorPane.topAnchor="250.0" />
+      <Button layoutX="279.0" layoutY="251.0" mnemonicParsing="false" onAction="#onStart" text="Start" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="279.0" AnchorPane.rightAnchor="279.0" AnchorPane.topAnchor="250.0" />
    </children>
 </AnchorPane>
