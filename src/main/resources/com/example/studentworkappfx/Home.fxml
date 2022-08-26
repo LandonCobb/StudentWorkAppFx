@@ -5,13 +5,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.studentworkappfx.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #202020;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.studentworkappfx.HomeController">
    <children>
-      <Label layoutX="230.0" layoutY="102.0" prefHeight="97.0" prefWidth="139.0" text="Welcome to the Neumont Student app" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="100.0">
+      <Label layoutX="259.0" layoutY="100.0" prefHeight="97.0" prefWidth="139.0" style="-fx-text-fill: white;" text="Welcome to the Neumont Student app" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="259.0" AnchorPane.rightAnchor="201.0" AnchorPane.topAnchor="100.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="279.0" layoutY="251.0" mnemonicParsing="false" onAction="#onStart" text="Start" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="279.0" AnchorPane.rightAnchor="279.0" AnchorPane.topAnchor="250.0" />
+      <Button layoutX="291.0" layoutY="251.0" mnemonicParsing="false" onAction="#onStart" prefHeight="-170.0" prefWidth="9.0" style="-fx-background-color: gold;" text="Start" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="450.0" />
    </children>
 </AnchorPane>
