@@ -15,10 +15,11 @@ import static javafx.application.Application.launch;
 public class HelloApplication extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Scheduler.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Hello!");
+        stage.setTitle("Scheduler");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
