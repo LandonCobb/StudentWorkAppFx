@@ -1,5 +1,6 @@
 package com.example.studentworkappfx;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -55,6 +56,12 @@ public class NoteController {
         }finally {
             fileIn.close();
         }
+    }
+
+    @FXML
+    protected void ReturnClick(ActionEvent event) throws IOException {
+        //btnHello.setText("Done!");
+        ChangeScene.changeScene(event,  "Scheduler.fxml");
     }
 
 }

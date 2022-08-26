@@ -1,7 +1,10 @@
 package com.example.studentworkappfx;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+
+import java.io.IOException;
 
 
 public class ResourcesController {
@@ -66,5 +69,11 @@ public class ResourcesController {
         } catch (java.io.IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    @FXML
+    protected void ReturnClick(ActionEvent event) throws IOException {
+        //btnHello.setText("Done!");
+        ChangeScene.changeScene(event,  "Scheduler.fxml");
     }
 }
