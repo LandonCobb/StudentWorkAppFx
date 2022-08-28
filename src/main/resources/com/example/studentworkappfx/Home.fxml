@@ -15,9 +15,9 @@
          </font>
       </Label>
       <Button layoutX="289.0" layoutY="260.0" mnemonicParsing="false" onAction="#onStart" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: gold;" text="Start" />
-      <ImageView fitHeight="233.0" fitWidth="214.0" layoutX="7.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="178.0" fitWidth="200.0" layoutX="27.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../Images/Neumont.jpg" />
+            <Image url="@../../../Images/Neumont.png" />
          </image>
       </ImageView>
    </children>
