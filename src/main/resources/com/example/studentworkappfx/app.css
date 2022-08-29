@@ -1,0 +1,6 @@
+.logoPane {
+    -fx-background-image: url("neumont_logo.png");
+    height: 135px;
+    width: 135px;
+    object-fit: fill;
+}

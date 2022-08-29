@@ -3,11 +3,20 @@ package com.example.studentworkappfx;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -30,6 +39,8 @@ public class SchedulerController implements Initializable {
     @FXML private TableView<TimeTableEntry> timeTable;
     @FXML private TableColumn<TimeTableEntry, String> timeTableTimes;
     @FXML private TableColumn<TimeTableEntry, String> timeTableEvents;
+
+    @FXML private Text GlanceSUN;
 
     private static class Month {
         private final String name;
@@ -105,13 +116,6 @@ public class SchedulerController implements Initializable {
             new TimeTableEntry("5:30", ""),
             new TimeTableEntry("6:00", "")
     );
-
-    private void testFunc() {
-        Calendar c = Calendar.getInstance();
-        var t = c.getTime().getYear();
-        String d = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
-        System.out.println("@!@!" + d);
-    }
 
     private void newSetupDate() {
         Calendar c = Calendar.getInstance();
@@ -202,7 +206,30 @@ public class SchedulerController implements Initializable {
         System.out.println("!" + localDate.toString());
     }
 
-    @FXML private void onEditEvent() {
+    @FXML private void onEditEvent(ActionEvent event) {
+        Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner(primaryStage);
+        VBox dialogVbox = new VBox(20);
+        dialogVbox.getChildren().add(new Text("This is a Dialog"));
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog.setScene(dialogScene);
+        dialog.show();
+//        new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                final Stage dialog = new Stage();
+//                dialog.initModality(Modality.APPLICATION_MODAL);
+//                dialog.initOwner(primaryStage);
+//                VBox dialogVbox = new VBox(20);
+//                dialogVbox.getChildren().add(new Text("This is a Dialog"));
+//                Scene dialogScene = new Scene(dialogVbox, 300, 200);
+//                dialog.setScene(dialogScene);
+//                dialog.show();
+//            }
+//        };
+        System.out.println("onEditEvent: OK");
 
     }
 
