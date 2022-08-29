@@ -327,27 +327,27 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
                <children>
-                  <Button fx:id="ResLink_Canvas" prefWidth="100.0" text="Canvas LMS">
+                  <Button fx:id="ResLink_Canvas" onAction="#onGradeClick" prefWidth="100.0" text="Canvas LMS">
                      <VBox.margin>
                         <Insets bottom="-10.0" />
                      </VBox.margin></Button>
-                  <Button fx:id="ResLink_MyNeumont" mnemonicParsing="false" prefWidth="100.0" text="My Neumont">
+                  <Button fx:id="ResLink_MyNeumont" mnemonicParsing="false" onAction="#onOrderClick" prefWidth="100.0" text="My Neumont">
                      <VBox.margin>
                         <Insets bottom="-10.0" />
                      </VBox.margin></Button>
-                  <Button fx:id="ResLink_Degree" mnemonicParsing="false" prefWidth="100.0" text="My Degree">
+                  <Button fx:id="ResLink_Degree" mnemonicParsing="false" onAction="#onDegreeClick" prefWidth="100.0" text="My Degree">
                      <VBox.margin>
                         <Insets bottom="-10.0" />
                      </VBox.margin></Button>
-                  <Button fx:id="ResLink_Tuition" mnemonicParsing="false" prefWidth="100.0" text="My Tuition">
+                  <Button fx:id="ResLink_Tuition" mnemonicParsing="false" onAction="#onTuitionClick" prefWidth="100.0" text="My Tuition">
                      <VBox.margin>
                         <Insets bottom="-10.0" />
                      </VBox.margin></Button>
-                  <Button fx:id="ResLink_StudentPortal" mnemonicParsing="false" prefWidth="100.0" text="Student Portal" />
+                  <Button fx:id="ResLink_StudentPortal" mnemonicParsing="false" onAction="#onStudentClick" prefWidth="100.0" text="Student Portal" />
                </children>
             </VBox>
             <Text fill="WHITE" layoutX="20.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NSC Version 0.8.0" wrappingWidth="95.33333333333337" />
-            <Button layoutX="20.0" layoutY="280.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Notes" />
+            <Button layoutX="20.0" layoutY="280.0" mnemonicParsing="false" onAction="#onNotesClick" prefHeight="25.0" prefWidth="95.0" text="Notes" />
             <Button layoutX="20.0" layoutY="315.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Calculator" />
             <Label layoutX="4.0" layoutY="135.0" text="Neumont&#10;Student&#10;Companion App&#10;" textAlignment="CENTER" textFill="WHITE">
                <font>
