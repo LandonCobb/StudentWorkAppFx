@@ -1,5 +1,8 @@
 package com.example.studentworkappfx;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,11 +13,14 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,6 +29,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class SchedulerController implements Initializable {
+    @FXML
+    public Label timeLabel;
     @FXML private Text dPaneNumday;
     @FXML private Text dPaneWeekday;
     @FXML private Text txtChangeDate;
@@ -42,6 +50,11 @@ public class SchedulerController implements Initializable {
             "January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
     );
+
+    @FXML
+    public void timeClicked(MouseEvent mouseEvent) throws IOException {
+        ChangeScene.changeScene(mouseEvent, "clock.fxml");
+    }
 
     public class TimeTableEntry {
         private String time;
@@ -105,6 +118,11 @@ public class SchedulerController implements Initializable {
             setupDate();
             setupTimeTable();
         });
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), ev -> {
+            timeLabel.setText(Clock.getCurrentTime());
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
     private void syncDate(Calendar c) {
