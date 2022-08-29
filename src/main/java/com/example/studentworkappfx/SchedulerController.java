@@ -10,6 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -42,55 +43,41 @@ public class SchedulerController implements Initializable {
         public String getName() {
             return name;
         }
-
         public int getDays() {
             return days;
         }
     }
 
-    private final ObservableList<Month> months = FXCollections.observableArrayList(
-            new Month("January", 30),
-            new Month("February", 30),
-            new Month("March", 30),
-            new Month("April", 30),
-            new Month("May", 30),
-            new Month("June", 30),
-            new Month("July", 30),
-            new Month("August", 30),
-            new Month("September", 30),
-            new Month("October", 30),
-            new Month("November", 30),
-            new Month("December", 30)
-    );
+    public class TimeTableEntry {
+        private String time;
+        private String event;
 
-    private ObservableList<String> getMonthNames(ObservableList<Month> months) {
-        List<String> monthNames;
-        monthNames = new ArrayList<String>();
+        public TimeTableEntry(String time, String event) {
+            this.time = time;
+            this.event = event;
+        }
 
-        months.forEach(month -> {
-            System.out.println(month.getName());
-            monthNames.add(month.getName());
-        });
-
-        return FXCollections.observableList(monthNames);
+        public String getTime() { return time; }
+        public String getEvent() {
+            return event;
+        }
     }
 
-    private ObservableList<String> monthName = getMonthNames(months);
 
-    private final Map<String, Integer> monthInfo = new HashMap<>() {{
-        this.put("January", 31);
-        this.put("February", 28);
-        this.put("March", 31);
-        this.put("April", 30);
-        this.put("May", 31);
-        this.put("June", 30);
-        this.put("July", 31);
-        this.put("August", 31);
-        this.put("September", 30);
-        this.put("October", 31);
-        this.put("November", 30);
-        this.put("December", 31);
-    }};
+    private final ObservableList<Month> months = FXCollections.observableArrayList(
+            new Month("January", 31),
+            new Month("February", 28),
+            new Month("March", 31),
+            new Month("April", 30),
+            new Month("May", 31),
+            new Month("June", 30),
+            new Month("July", 31),
+            new Month("August", 31),
+            new Month("September", 30),
+            new Month("October", 31),
+            new Month("November", 30),
+            new Month("December", 31)
+    );
 
     private final ObservableList<TimeTableEntry> timeTableData = FXCollections.observableArrayList(
             new TimeTableEntry("6:00", ""),
@@ -119,6 +106,36 @@ public class SchedulerController implements Initializable {
             new TimeTableEntry("6:00", "")
     );
 
+    private void testFunc() {
+        Calendar c = Calendar.getInstance();
+        var t = c.getTime().getYear();
+        String d = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
+        System.out.println("@!@!" + d);
+    }
+
+    private void newSetupDate() {
+        Calendar c = Calendar.getInstance();
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        int month = c.get(Calendar.MONTH);
+        int year = c.get(Calendar.YEAR);
+
+        String weekday = new SimpleDateFormat("EEEE").format(c.getTime());
+        System.out.println("newSetupDate");
+        System.out.println(weekday);
+        System.out.println(month);
+        System.out.println(c.get(c.JANUARY));
+        System.out.println("newSetupDate: end");
+//
+//        int day = Integer.parseInt(new SimpleDateFormat("dd").format(c.getTime()));
+//        int month = Integer.parseInt(new SimpleDateFormat("MM").format(c.getTime()));
+//        int year = Integer.parseInt(new SimpleDateFormat("yyyy").format(c.getTime()));
+//
+//        String monthName = new SimpleDateFormat("MMM-MM").format(c.getTime());
+//        String weekday = new SimpleDateFormat("EEEEEE").format(c.getTime());
+
+
+    }
+
     private void setupDate() {
         LocalDate date = LocalDate.now();
         int day = date.getDayOfMonth();
@@ -130,8 +147,12 @@ public class SchedulerController implements Initializable {
         weekday = weekday.substring(0, 1).toUpperCase() + weekday.substring(1).toLowerCase();
         month = month.substring(0, 1).toUpperCase() + month.substring(1).toLowerCase();
 
-        dPaneNumday.setText(String.valueOf(day));
-        dPaneWeekday.setText(weekday);
+        ObservableList<String> monthName = FXCollections.observableList(new ArrayList<String>() {{
+            months.forEach(m -> {
+                System.out.println(m.getName());
+                this.add(m.getName());
+            });
+        }});
 
         // The following code block is attributed to an unnamed contributor from "o7planning".
         // Site link: https://o7planning.org/11185/javafx-spinner
@@ -139,8 +160,9 @@ public class SchedulerController implements Initializable {
         SpinnerValueFactory<Integer> valueFactoryDay = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 30, day);
         SpinnerValueFactory<Integer> valueFactoryYear = new SpinnerValueFactory.IntegerSpinnerValueFactory(year, year + 10, year);
         valueFactoryMonths.setValue(month);
-        //TODO: Refactor line (this-3) with appropriate maximum day value for each month (possibly switch case)?.
 
+        dPaneNumday.setText(String.valueOf(day));
+        dPaneWeekday.setText(weekday);
         spnScheduleDAY.setValueFactory(valueFactoryDay);
         spnScheduleMONTH.setValueFactory(valueFactoryMonths);
         spnScheduleYEAR.setValueFactory(valueFactoryYear);
@@ -158,6 +180,7 @@ public class SchedulerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
+            newSetupDate();
             setupDate();
             setupTimeTable();
         });
