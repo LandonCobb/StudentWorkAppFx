@@ -3,10 +3,12 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -16,16 +18,19 @@
 
 <AnchorPane prefHeight="630.0" prefWidth="1030.0" style="-fx-background-color: #f0ecec;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.studentworkappfx.SchedulerController">
    <children>
-      <Pane prefHeight="170.0" prefWidth="170.0" AnchorPane.leftAnchor="155.0" AnchorPane.topAnchor="20.0">
+      <Pane prefHeight="170.0" prefWidth="170.0" style="-fx-background-color: #e8e8e8;" styleClass="datePaneNumDay" stylesheets="@app.css" AnchorPane.leftAnchor="155.0" AnchorPane.topAnchor="20.0">
          <children>
-            <Text fx:id="dPaneNumday" fill="#ffdd00" layoutX="34.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" textOrigin="CENTER" translateX="-3.0">
+            <Text fx:id="dPaneNumday" fill="#ffdd00" layoutX="34.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass=".DatePaneNumDay" text="10" textAlignment="CENTER" textOrigin="CENTER" translateX="-3.0">
                <font>
                   <Font name="Arial Bold" size="96.0" />
                </font>
+               <effect>
+                  <DropShadow height="5.0" radius="2.0" width="5.0" />
+               </effect>
             </Text>
-            <Text fx:id="dPaneWeekday" layoutX="-6.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wednesday" textAlignment="CENTER" wrappingWidth="182.2603759765625">
+            <Text fx:id="dPaneWeekday" layoutX="-7.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wednesday" textAlignment="CENTER" wrappingWidth="182.2603759765625">
                <font>
-                  <Font name="Franklin Gothic Medium" size="32.0" />
+                  <Font name="Calibri Bold" size="31.0" />
                </font>
             </Text>
          </children>
@@ -34,7 +39,7 @@
          <children>
             <VBox prefHeight="220.0" prefWidth="170.0">
                <children>
-                  <Pane prefHeight="20.0" prefWidth="170.0" style="-fx-background-color: black;">
+                  <Pane prefHeight="20.0" prefWidth="170.0" style="-fx-background-color: #202020;">
                      <children>
                         <Text fill="WHITE" layoutX="36.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-background-color: black;" text="VIEW SCHEDULE" textAlignment="RIGHT">
                            <font>
@@ -45,8 +50,8 @@
                   </Pane>
                   <HBox prefHeight="0.0" prefWidth="170.0">
                      <children>
-                        <Spinner fx:id="spnScheduleDAY" editable="true" prefWidth="110.0" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Day" translateX="8.0" translateY="10.0">
+                        <Spinner fx:id="spnScheduleYEAR" editable="true" prefWidth="110.0" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Year" translateX="8.0" translateY="10.0">
                            <font>
                               <Font name="Candara Bold" size="13.0" />
                            </font>
@@ -71,8 +76,8 @@
                   </HBox>
                   <HBox prefHeight="0.0" prefWidth="170.0">
                      <children>
-                        <Spinner fx:id="spnScheduleYEAR" editable="true" prefWidth="110.0" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Year" translateX="8.0" translateY="10.0">
+                        <Spinner fx:id="spnScheduleDAY" editable="true" prefWidth="110.0" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Day" translateX="8.0" translateY="10.0">
                            <font>
                               <Font name="Candara Bold" size="13.0" />
                            </font>
@@ -91,7 +96,7 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Pane prefHeight="20.0" prefWidth="170.0" style="-fx-background-color: black;">
+                  <Pane prefHeight="20.0" prefWidth="170.0" style="-fx-background-color: #202020;">
                      <children>
                         <Text fill="WHITE" layoutX="36.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-background-color: black;" text="EDIT SCHEDULE" textAlignment="RIGHT">
                            <font>
@@ -122,9 +127,9 @@
          <children>
             <Pane prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: black;">
                <children>
-                  <Text fx:id="txtChangeDate" fill="WHITE" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-background-color: black;" text="&lt;&lt;CURRENT DATE&gt;&gt;" textAlignment="CENTER" wrappingWidth="200.0">
+                  <Text fx:id="txtChangeDate" fill="WHITE" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-background-color: #202020;" text="&lt;&lt;CURRENT DATE&gt;&gt;" textAlignment="CENTER" wrappingWidth="200.0">
                      <font>
-                        <Font name="Arial Bold" size="13.0" />
+                        <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Text>
                </children>
@@ -137,31 +142,103 @@
             </TableView>
          </children>
       </VBox>
-      <VBox prefHeight="560.0" prefWidth="210.0" AnchorPane.leftAnchor="585.0" AnchorPane.topAnchor="20.0">
+      <VBox prefHeight="560.0" prefWidth="210.0" style="-fx-background-color: #e8e8e8;" AnchorPane.leftAnchor="585.0" AnchorPane.topAnchor="20.0">
          <children>
-            <Pane prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: black;">
+            <Pane prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #202020;">
                <children>
-                  <Text fill="WHITE" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-background-color: black;" text="WEEK AT A GLANCE" textAlignment="CENTER" wrappingWidth="200.0">
+                  <Text fill="WHITE" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-background-color: black;" text="WEEK AT A GLANCE" textAlignment="CENTER" wrappingWidth="210.0">
                      <font>
-                        <Font name="Arial Bold" size="13.0" />
+                        <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Text>
                </children>
             </Pane>
-            <Pane prefHeight="90.0" prefWidth="210.0">
+            <AnchorPane prefHeight="75.0" prefWidth="210.0" style="-fx-background-color: #dbdbdb;">
                <children>
-                  <Text layoutX="3.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;&lt;Weekday&gt;&gt;: \n&lt;&lt;MM/DD/YYYY&gt;&gt;" />
+                  <Pane prefWidth="38.0" style="-fx-background-color: #202020;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label alignment="CENTER" prefWidth="65.0" rotate="-90.0" text="SUN" textFill="#ffdd00" AnchorPane.leftAnchor="-14.0" AnchorPane.topAnchor="18.0">
+                     <font>
+                        <Font name="Calibri Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <TextArea layoutX="43.0" layoutY="-16.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="7.0" />
                </children>
-            </Pane>
+            </AnchorPane>
+            <AnchorPane prefHeight="75.0" prefWidth="210.0">
+               <children>
+                  <Pane prefWidth="38.0" style="-fx-background-color: #202020;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label alignment="CENTER" prefWidth="65.0" rotate="-90.0" text="MON" textFill="#ffdd00" AnchorPane.leftAnchor="-14.0" AnchorPane.topAnchor="18.0">
+                     <font>
+                        <Font name="Calibri Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <TextArea AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="7.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="75.0" prefWidth="210.0" style="-fx-background-color: #dbdbdb;">
+               <children>
+                  <Pane prefWidth="38.0" style="-fx-background-color: #202020;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label alignment="CENTER" prefWidth="65.0" rotate="-90.0" text="TUE" textFill="#ffdd00" AnchorPane.leftAnchor="-14.0" AnchorPane.topAnchor="18.0">
+                     <font>
+                        <Font name="Calibri Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <TextArea AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="7.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="75.0" prefWidth="210.0">
+               <children>
+                  <Pane prefWidth="38.0" style="-fx-background-color: #202020;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label alignment="CENTER" prefWidth="65.0" rotate="-90.0" text="WED" textFill="#ffdd00" AnchorPane.leftAnchor="-14.0" AnchorPane.topAnchor="18.0">
+                     <font>
+                        <Font name="Calibri Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <TextArea AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="7.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="75.0" prefWidth="210.0" style="-fx-background-color: #dbdbdb;">
+               <children>
+                  <Pane prefWidth="38.0" style="-fx-background-color: #202020;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label alignment="CENTER" prefWidth="65.0" rotate="-90.0" text="THU" textFill="#ffdd00" AnchorPane.leftAnchor="-14.0" AnchorPane.topAnchor="18.0">
+                     <font>
+                        <Font name="Calibri Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <TextArea AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="7.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="75.0" prefWidth="210.0">
+               <children>
+                  <Pane prefWidth="38.0" style="-fx-background-color: #202020;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label alignment="CENTER" prefWidth="65.0" rotate="-90.0" text="FRI" textFill="#ffdd00" AnchorPane.leftAnchor="-14.0" AnchorPane.topAnchor="18.0">
+                     <font>
+                        <Font name="Calibri Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <TextArea AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="7.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="75.0" prefWidth="210.0" style="-fx-background-color: #dbdbdb;">
+               <children>
+                  <Pane prefWidth="38.0" style="-fx-background-color: #202020;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label alignment="CENTER" prefWidth="65.0" rotate="-90.0" text="SAT" textFill="#ffdd00" AnchorPane.leftAnchor="-14.0" AnchorPane.topAnchor="18.0">
+                     <font>
+                        <Font name="Calibri Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <TextArea AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="7.0" />
+               </children>
+            </AnchorPane>
          </children>
       </VBox>
-      <VBox prefHeight="560.0" prefWidth="200.0" AnchorPane.leftAnchor="815.0" AnchorPane.topAnchor="20.0">
+      <VBox prefHeight="560.0" prefWidth="200.0" style="-fx-background-color: #e8e8e8;" AnchorPane.leftAnchor="815.0" AnchorPane.topAnchor="20.0">
          <children>
             <Pane prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: black;">
                <children>
-                  <Text fill="WHITE" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-background-color: black;" text="TO-DO LIST" textAlignment="CENTER" wrappingWidth="200.0">
+                  <Text fill="WHITE" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-background-color: #202020;" text="TO-DO LIST" textAlignment="CENTER" wrappingWidth="200.0">
                      <font>
-                        <Font name="Arial Bold" size="13.0" />
+                        <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Text>
                </children>
@@ -239,19 +316,51 @@
       </VBox>
       <Pane prefHeight="630.0" prefWidth="135.0" style="-fx-background-color: #202020;">
          <children>
-            <VBox alignment="CENTER" layoutY="382.0" prefHeight="248.0" prefWidth="135.0" spacing="20.0">
+            <Pane prefHeight="135.0" prefWidth="135.0" styleClass="logoPane" stylesheets="@app.css" />
+            <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutY="358.0" prefHeight="50.0" prefWidth="135.0" style="setWrapText: true;" text="Student&#10;Resources" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Corbel" size="19.0" />
+               </font>
+            </Label>
+            <VBox alignment="CENTER" layoutY="399.0" prefHeight="200.0" prefWidth="135.0" spacing="20.0">
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
                <children>
-                  <Button fx:id="ResLink_Canvas" text="Canvas LMS" />
-                  <Button fx:id="ResLink_MyNeumont" mnemonicParsing="false" text="My Neumont" />
-                  <Button fx:id="ResLink_Degree" mnemonicParsing="false" text="My Degree" />
-                  <Button fx:id="ResLink_Tuition" mnemonicParsing="false" text="My Tuition" />
-                  <Button fx:id="ResLink_StudentPortal" mnemonicParsing="false" text="Student Portal" />
+                  <Button fx:id="ResLink_Canvas" prefWidth="100.0" text="Canvas LMS">
+                     <VBox.margin>
+                        <Insets bottom="-10.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="ResLink_MyNeumont" mnemonicParsing="false" prefWidth="100.0" text="My Neumont">
+                     <VBox.margin>
+                        <Insets bottom="-10.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="ResLink_Degree" mnemonicParsing="false" prefWidth="100.0" text="My Degree">
+                     <VBox.margin>
+                        <Insets bottom="-10.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="ResLink_Tuition" mnemonicParsing="false" prefWidth="100.0" text="My Tuition">
+                     <VBox.margin>
+                        <Insets bottom="-10.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="ResLink_StudentPortal" mnemonicParsing="false" prefWidth="100.0" text="Student Portal" />
                </children>
             </VBox>
+            <Text fill="WHITE" layoutX="20.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NSC Version 0.8.0" wrappingWidth="95.33333333333337" />
+            <Button layoutX="20.0" layoutY="280.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Notes" />
+            <Button layoutX="20.0" layoutY="315.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Calculator" />
+            <Label layoutX="4.0" layoutY="135.0" text="Neumont&#10;Student&#10;Companion App&#10;" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="19.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutY="241.0" prefHeight="31.0" prefWidth="135.0" style="setWrapText: true;" text="Tools" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Corbel" size="19.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
+      <Label layoutX="168.0" layoutY="580.0" prefHeight="31.0" prefWidth="110.0" text="TIMER GOES HERE&#10;" />
    </children>
 </AnchorPane>
