@@ -3,13 +3,21 @@ package com.example.studentworkappfx;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -30,67 +38,25 @@ public class SchedulerController implements Initializable {
     @FXML private TableColumn<TimeTableEntry, String> timeTableTimes;
     @FXML private TableColumn<TimeTableEntry, String> timeTableEvents;
 
-    private static class Month {
-        private final String name;
-        private final int days;
-
-        Month(String name, int days){
-            this.name = name;
-            this.days = days;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public int getDays() {
-            return days;
-        }
-    }
-
-    private final ObservableList<Month> months = FXCollections.observableArrayList(
-            new Month("January", 30),
-            new Month("February", 30),
-            new Month("March", 30),
-            new Month("April", 30),
-            new Month("May", 30),
-            new Month("June", 30),
-            new Month("July", 30),
-            new Month("August", 30),
-            new Month("September", 30),
-            new Month("October", 30),
-            new Month("November", 30),
-            new Month("December", 30)
+    final ObservableList<String> monthList = FXCollections.observableArrayList(
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
     );
 
-    private ObservableList<String> getMonthNames(ObservableList<Month> months) {
-        List<String> monthNames;
-        monthNames = new ArrayList<String>();
+    public class TimeTableEntry {
+        private String time;
+        private String event;
 
-        months.forEach(month -> {
-            System.out.println(month.getName());
-            monthNames.add(month.getName());
-        });
+        public TimeTableEntry(String time, String event) {
+            this.time = time;
+            this.event = event;
+        }
 
-        return FXCollections.observableList(monthNames);
+        public String getTime() { return time; }
+        public String getEvent() {
+            return event;
+        }
     }
-
-    private ObservableList<String> monthName = getMonthNames(months);
-
-    private final Map<String, Integer> monthInfo = new HashMap<>() {{
-        this.put("January", 31);
-        this.put("February", 28);
-        this.put("March", 31);
-        this.put("April", 30);
-        this.put("May", 31);
-        this.put("June", 30);
-        this.put("July", 31);
-        this.put("August", 31);
-        this.put("September", 30);
-        this.put("October", 31);
-        this.put("November", 30);
-        this.put("December", 31);
-    }};
 
     private final ObservableList<TimeTableEntry> timeTableData = FXCollections.observableArrayList(
             new TimeTableEntry("6:00", ""),
@@ -120,30 +86,8 @@ public class SchedulerController implements Initializable {
     );
 
     private void setupDate() {
-        LocalDate date = LocalDate.now();
-        int day = date.getDayOfMonth();
-        String month = String.valueOf(date.getMonth());
-        int year = date.getYear();
-        String weekday = String.valueOf(date.getDayOfWeek());
-
-        // Formatting
-        weekday = weekday.substring(0, 1).toUpperCase() + weekday.substring(1).toLowerCase();
-        month = month.substring(0, 1).toUpperCase() + month.substring(1).toLowerCase();
-
-        dPaneNumday.setText(String.valueOf(day));
-        dPaneWeekday.setText(weekday);
-
-        // The following code block is attributed to an unnamed contributor from "o7planning".
-        // Site link: https://o7planning.org/11185/javafx-spinner
-        SpinnerValueFactory<String> valueFactoryMonths = new SpinnerValueFactory.ListSpinnerValueFactory<String>(monthName);
-        SpinnerValueFactory<Integer> valueFactoryDay = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 30, day);
-        SpinnerValueFactory<Integer> valueFactoryYear = new SpinnerValueFactory.IntegerSpinnerValueFactory(year, year + 10, year);
-        valueFactoryMonths.setValue(month);
-        //TODO: Refactor line (this-3) with appropriate maximum day value for each month (possibly switch case)?.
-
-        spnScheduleDAY.setValueFactory(valueFactoryDay);
-        spnScheduleMONTH.setValueFactory(valueFactoryMonths);
-        spnScheduleYEAR.setValueFactory(valueFactoryYear);
+        Calendar c = Calendar.getInstance();
+        syncDate(c);
     }
 
     private void setupTimeTable() {
@@ -163,23 +107,60 @@ public class SchedulerController implements Initializable {
         });
     }
 
-    private void syncDate() {
+    private void syncDate(Calendar c) {
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        int month = c.get(Calendar.MONTH);
+        int year = c.get(Calendar.YEAR);
+
+        String dayFormatted = ( (day < 10) ? "0" + Integer.toString(day) : Integer.toString(day) );
+        String weekday = new SimpleDateFormat("EEEE").format(c.getTime());
+        String dateString = new SimpleDateFormat("MMMM dd, yyyy").format(c.getTime());
+
+        //mycal.getActualMaximum(Calendar.DAY_OF_MONTH)
+
+        SpinnerValueFactory<Integer> valueFactoryYear = new SpinnerValueFactory.IntegerSpinnerValueFactory(year, year + 10, year);
+        SpinnerValueFactory<String> valueFactoryMonths = new SpinnerValueFactory.ListSpinnerValueFactory<String>(monthList);
+        SpinnerValueFactory<Integer> valueFactoryDay = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 30, day);
+        valueFactoryMonths.setValue(monthList.get(month));
+
+        dPaneNumday.setText(dayFormatted);
+        dPaneWeekday.setText(weekday);
+        txtChangeDate.setText(dateString);
+        spnScheduleYEAR.setValueFactory(valueFactoryYear);
+        spnScheduleMONTH.setValueFactory(valueFactoryMonths);
+        spnScheduleDAY.setValueFactory(valueFactoryDay);
 
     }
 
-    @FXML private void onSelectDate() {
+    @FXML private void onSelectDate() throws ParseException {
         String day = spnScheduleDAY.getValue().toString();
         String month = spnScheduleMONTH.getValue().toString();
         String year = spnScheduleYEAR.getValue().toString();
-        String date = day + "/" + month + "/" + year;
+        String dateString = day + "/" + month + "/" + year;
 
-        System.out.println(date);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        LocalDate localDate = LocalDate.parse(date, formatter);
-        System.out.println("!" + localDate.toString());
+        Date date = new SimpleDateFormat("dd/MMMM/yyyy", Locale.ENGLISH).parse(dateString);
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        syncDate(c);
+
+//        System.out.println(date);
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
+//        LocalDate localDate = LocalDate.parse(date, formatter);
+//        System.out.println("!" + localDate.toString());
     }
 
-    @FXML private void onEditEvent() {
+    @FXML private void onEditEvent(ActionEvent event) {
+        Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner(primaryStage);
+        VBox dialogVbox = new VBox(20);
+        dialogVbox.getChildren().add(new Text("This is a Dialog"));
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog.setScene(dialogScene);
+        dialog.show();
+
+        System.out.println("onEditEvent: OK");
 
     }
 
