@@ -15,6 +15,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -170,6 +171,67 @@ public class SchedulerController implements Initializable {
 
     @FXML private void onClearSchedule() {
 
+    }
+
+    @FXML
+    protected void onGradeClick() {
+        // code below was made possible with the help of Stack overflow https://stackoverflow.com/questions/10967451/open-a-link-in-browser-with-java-button
+        try {
+            String url = "https://lms.neumont.edu"; // the url
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+            // goes to the desktop and searches the url through the main search engine
+        } catch (java.io.IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    protected void onOrderClick() {
+
+        try {
+            String url = "https://my.neumont.edu";
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+        } catch (java.io.IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    protected void onDegreeClick() {
+
+        try {
+            String url = "https://degree.neumont.edu";
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+        } catch (java.io.IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    protected void onTuitionClick() {
+
+        try {
+            String url = "https://tuitionoptions.accountvue.com";
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+        } catch (java.io.IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    protected void onStudentClick() {
+
+        try {
+            String url = "https://portal.neumont.edu/secure/student/StuPortal.aspx";
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+        } catch (java.io.IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    protected void onNotesClick(ActionEvent event)throws IOException {
+        ChangeScene.changeScene(event,  "Notes.fxml");
     }
 
 
