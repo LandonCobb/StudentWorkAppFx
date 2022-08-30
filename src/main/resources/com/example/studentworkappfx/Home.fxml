@@ -2,16 +2,23 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #202020;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.studentworkappfx.HomeController">
    <children>
-      <Label layoutX="259.0" layoutY="100.0" prefHeight="97.0" prefWidth="139.0" style="-fx-text-fill: white;" text="Welcome to the Neumont Student app" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="259.0" AnchorPane.rightAnchor="201.0" AnchorPane.topAnchor="100.0">
+      <Label layoutX="180.0" layoutY="57.0" prefHeight="143.0" prefWidth="280.0" style="-fx-text-fill: white;" text="Welcome to the Neumont Student App" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="57.0">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold" size="28.0" />
          </font>
       </Label>
-      <Button layoutX="291.0" layoutY="251.0" mnemonicParsing="false" onAction="#onStart" prefHeight="-170.0" prefWidth="9.0" style="-fx-background-color: gold;" text="Start" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="450.0" />
+      <Button layoutX="289.0" layoutY="260.0" mnemonicParsing="false" onAction="#onStart" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: gold;" text="Start" />
+      <ImageView fitHeight="178.0" fitWidth="200.0" layoutX="27.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Images/Neumont.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
