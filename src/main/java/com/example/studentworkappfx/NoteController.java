@@ -57,11 +57,4 @@ public class NoteController {
             fileIn.close();
         }
     }
-
-    @FXML
-    protected void ReturnClick(ActionEvent event) throws IOException {
-        //btnHello.setText("Done!");
-        ChangeScene.changeScene(event,  "Scheduler.fxml");
-    }
-
 }
