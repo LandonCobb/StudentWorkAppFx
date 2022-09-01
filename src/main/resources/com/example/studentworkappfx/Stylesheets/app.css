@@ -1,0 +1,11 @@
+.logoPane {
+    -fx-background-image: url("../Images/neumont_logo.png");
+    height: 135px;
+    width: 135px;
+    object-fit: fill;
+}
+
+.SwBackground {
+    -fx-background-image: url("../Images/SWAbackground.jpg");
+    object-fit: fill;
+}

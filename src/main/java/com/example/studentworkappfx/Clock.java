@@ -1,80 +1,61 @@
 package com.example.studentworkappfx;
 
-
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
-
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+import javafx.scene.control.Label;
+import javafx.util.Duration;
 
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Clock implements Initializable {
+    @FXML private Label lbCurrentTime;
+    @FXML private Label lbSwTime;
+    @FXML private Button btnSw;
 
-    private int clickedCount = 0;
-    private int swCount = 0;
+    private boolean isStopwatchActive = false;
+    private final Calendar swTime = Calendar.getInstance();
 
-    @FXML
-    public Button backBTN;
-    @FXML
-    private Text clockText;
-
-    @FXML
-    private Button swButton;
-
-    @FXML
-    private Text swFinishText;
-
-    @FXML
-    public void onBackClicked(MouseEvent mouseEvent) throws IOException {
-        ChangeScene.changeScene(mouseEvent, "Scheduler.fxml");
-    }
-    @FXML
-    public void onSWClick(MouseEvent mouseEvent) {
-        clickedCount++;
-        swButton.setStyle("-fx-background-color: #ff0000;");
-        Timer timer = new Timer();
-        if(clickedCount % 2 == 1){
-            swCount = 0;
-            timer.scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
-                    swCount++;
-                    swFinishText.setText(Integer.toString(swCount));
-                    if(clickedCount % 2 == 0){
-                        timer.cancel();
-                        swButton.setStyle("-fx-background-color: #00ff00;");
-                        swFinishText.setText(Integer.toString(swCount - 1));
-                    }
-                }
-            }, 0, 1000);
+    @FXML public void onSWClick(ActionEvent event) {
+        isStopwatchActive = !isStopwatchActive;
+        if (isStopwatchActive) {
+            btnSw.setStyle("-fx-background-color: #0c8004;");
+        } else {
+            btnSw.setStyle("-fx-background-color: #ff0000;");
         }
     }
 
     public static String getCurrentTime(){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        return dtf.format(now);
+        return new SimpleDateFormat("HH:mm:ss aaa", Locale.ENGLISH).format(Calendar.getInstance().getTime());
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                clockText.setText(getCurrentTime());
+        Platform.runLater(() -> {
+            swTime.set(Calendar.HOUR, 12);
+            swTime.set(Calendar.MINUTE, 0);
+            swTime.set(Calendar.SECOND, 0);
+            lbCurrentTime.setText(Clock.getCurrentTime());
+        });
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), ev -> {
+            lbCurrentTime.setText(Clock.getCurrentTime());
+            if (isStopwatchActive) {
+                swTime.add(Calendar.SECOND, 1);
+                String swTimeStr = new SimpleDateFormat("HH:mm:ss", Locale.UK).format(swTime.getTime()); // Locale.UK is pretty much military time
+                lbSwTime.setText(swTimeStr);
             }
-        }, 0, 1000);
+        }));
+
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
 
