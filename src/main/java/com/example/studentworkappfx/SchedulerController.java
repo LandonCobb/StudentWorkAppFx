@@ -9,34 +9,29 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class SchedulerController implements Initializable {
-    @FXML
-    public Label timeLabel;
+    @FXML private Label timeLabel;
     @FXML private Text dPaneNumday;
     @FXML private Text dPaneWeekday;
     @FXML private Text txtChangeDate;
-    @FXML private Spinner spnScheduleDAY;
-    @FXML private Spinner spnScheduleMONTH;
-    @FXML private Spinner spnScheduleYEAR;
+    @FXML private TextField tfEvent;
+    @FXML private Spinner<Integer> spnScheduleDAY;
+    @FXML private Spinner<String> spnScheduleMONTH;
+    @FXML private Spinner<Integer> spnScheduleYEAR;
+    @FXML private Spinner<String> spnTimeSel1;
+    @FXML private Spinner<String> spnTimeSel2;
     @FXML private Button btnSelectDate;
     @FXML private Button btnEditEvent;
     @FXML private Button btnAddEvent;
@@ -51,9 +46,17 @@ public class SchedulerController implements Initializable {
             "July", "August", "September", "October", "November", "December"
     );
 
+    //TODO: Refactor or remove this variable entirely!
+    final ObservableList<String> timeList = FXCollections.observableArrayList(
+            "6:00", "6:30", "7:00", "7:30", "8:00", "8:30", "9:00", "9:30",
+            "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "1:00", "1:30",
+            "2:00", "2:30", "3:00", "3:30", "4:00", "4:30", "5:00", "5:30",
+            "6:00", "6:30", "7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00"
+    );
+
     @FXML
     public void timeClicked(MouseEvent mouseEvent) throws IOException {
-        ChangeScene.changeScene(mouseEvent, "clock.fxml");
+        ChangeScene.getModal(mouseEvent, "Clock.fxml", "NSC Stopwatch");
     }
 
     public class TimeTableEntry {
@@ -69,9 +72,15 @@ public class SchedulerController implements Initializable {
         public String getEvent() {
             return event;
         }
+        public void setEvent(String event) { this.event = event;}
+
+        @Override
+        public String toString() {
+            return "{" + time + "," + event + "}";
+        }
     }
 
-    private final ObservableList<TimeTableEntry> timeTableData = FXCollections.observableArrayList(
+    private ObservableList<TimeTableEntry> timeTableData = FXCollections.observableArrayList(
             new TimeTableEntry("6:00", ""),
             new TimeTableEntry("6:30", ""),
             new TimeTableEntry("7:00", ""),
@@ -103,26 +112,17 @@ public class SchedulerController implements Initializable {
         syncDate(c);
     }
 
-    private void setupTimeTable() {
-        timeTableTimes.setCellValueFactory(new PropertyValueFactory("time"));
-        timeTableEvents.setCellValueFactory(new PropertyValueFactory("event"));
+    private void updateTimeTable() {
+        timeTableTimes.setCellValueFactory(new PropertyValueFactory<>("time"));
+        timeTableEvents.setCellValueFactory(new PropertyValueFactory<>("event"));
         timeTable.setItems(timeTableData);
-        //timeTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        //timeTable.getColumns().addAll(timeTableTimes, timeTableEvents);
-
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        Platform.runLater(() -> {
-            setupDate();
-            setupTimeTable();
-        });
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), ev -> {
-            timeLabel.setText(Clock.getCurrentTime());
-        }));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
+    private void miscSetup() {
+        SpinnerValueFactory<String> valueFactoryTime1 = new SpinnerValueFactory.ListSpinnerValueFactory<String>(timeList);
+        SpinnerValueFactory<String> valueFactoryTime2 = new SpinnerValueFactory.ListSpinnerValueFactory<String>(timeList);
+        spnTimeSel1.setValueFactory(valueFactoryTime1);
+        spnTimeSel2.setValueFactory(valueFactoryTime2);
     }
 
     private void syncDate(Calendar c) {
@@ -160,41 +160,37 @@ public class SchedulerController implements Initializable {
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         syncDate(c);
-
-//        System.out.println(date);
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
-//        LocalDate localDate = LocalDate.parse(date, formatter);
-//        System.out.println("!" + localDate.toString());
-    }
-
-    @FXML private void onEditEvent(ActionEvent event) {
-        Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        final Stage dialog = new Stage();
-        dialog.initModality(Modality.APPLICATION_MODAL);
-        dialog.initOwner(primaryStage);
-        VBox dialogVbox = new VBox(20);
-        dialogVbox.getChildren().add(new Text("This is a Dialog"));
-        Scene dialogScene = new Scene(dialogVbox, 300, 200);
-        dialog.setScene(dialogScene);
-        dialog.show();
-
-        System.out.println("onEditEvent: OK");
-
+        onClearSchedule();
     }
 
     @FXML private void onAddEvent() {
+        String t1 = spnTimeSel1.getValue().toString();
+        String t2 = spnTimeSel2.getValue().toString();
+        String event = tfEvent.getText();
 
+        int t1_index = timeList.indexOf(t1);
+        int t2_index = timeList.indexOf(t2);
+
+        if ( (t1_index != -1) && (t2_index != -1) && (t1_index <= t2_index)) {
+            for (int i = t1_index; i <= t2_index; i++) {
+                timeTableData.get(i).setEvent(event);
+            }
+        }
+
+        timeTable.refresh();
     }
 
     @FXML private void onClearSchedule() {
+        for (int i = 0; i < timeTableData.size(); i++) {
+            timeTableData.get(i).setEvent("");
+        }
 
+        timeTable.refresh();
     }
 
-    @FXML
-    protected void onGradeClick() {
+    private void doWebLink(String url) {
         // code below was made possible with the help of Stack overflow https://stackoverflow.com/questions/10967451/open-a-link-in-browser-with-java-button
         try {
-            String url = "https://lms.neumont.edu"; // the url
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
             // goes to the desktop and searches the url through the main search engine
         } catch (java.io.IOException e) {
@@ -202,54 +198,53 @@ public class SchedulerController implements Initializable {
         }
     }
 
-    @FXML
-    protected void onOrderClick() {
-
-        try {
-            String url = "https://my.neumont.edu";
-            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
-        } catch (java.io.IOException e) {
-            System.out.println(e.getMessage());
-        }
+    @FXML private void onResLink1() {
+        doWebLink("https://lms.neumont.edu");
+    }
+    @FXML private void onResLink2() {
+        doWebLink("https://my.neumont.edu");
+    }
+    @FXML private void onResLink3() {
+        doWebLink("https://degree.neumont.edu");
+    }
+    @FXML private void onResLink4() {
+        doWebLink("https://tuitionoptions.accountvue.com");
+    }
+    @FXML private void onResLink5() {
+        doWebLink("https://portal.neumont.edu/secure/student/StuPortal.aspx");
     }
 
-    @FXML
-    protected void onDegreeClick() {
-
-        try {
-            String url = "https://degree.neumont.edu";
-            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
-        } catch (java.io.IOException e) {
-            System.out.println(e.getMessage());
-        }
+    @FXML private void onNotesClick(ActionEvent event) throws IOException {
+        ChangeScene.getModal(event, "Notes.fxml", "NSC Notes");
     }
 
-    @FXML
-    protected void onTuitionClick() {
-
-        try {
-            String url = "https://tuitionoptions.accountvue.com";
-            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
-        } catch (java.io.IOException e) {
-            System.out.println(e.getMessage());
-        }
+    @FXML private void onCalcClick(ActionEvent event) throws IOException {
+        ChangeScene.getModal(event,  "Calc.fxml", "NSC Calculator");
     }
 
-    @FXML
-    protected void onStudentClick() {
-
-        try {
-            String url = "https://portal.neumont.edu/secure/student/StuPortal.aspx";
-            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
-        } catch (java.io.IOException e) {
-            System.out.println(e.getMessage());
-        }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Platform.runLater(() -> {
+            miscSetup();
+            setupDate();
+            updateTimeTable();
+        });
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), ev -> {
+            timeLabel.setText(Clock.getCurrentTime());
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
-    @FXML
-    protected void onNotesClick(ActionEvent event)throws IOException {
-        ChangeScene.changeScene(event,  "Notes.fxml");
-    }
+
+
+
+
+//    @FXML
+//    protected void onCalcClick(ActionEvent event)throws IOException {
+//        ChangeScene.changeScene(event,  "Notes.fxml");
+//    }
+
 
 
 
